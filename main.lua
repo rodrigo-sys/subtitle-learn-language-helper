@@ -30,4 +30,4 @@ function main()
 
 end
 
-mp.add_key_binding("a", "print-sub", main)
+mp.add_key_binding("a", "select-subtitle-word", main)
