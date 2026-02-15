@@ -19,7 +19,10 @@ function main()
   input.select({
     items = words,
     submit = function(index)
-      local def = dictionary.fetch_definition(words[index])
+      local word = words[index]
+      mp.osd_message("Looking up: " .. word, 2)
+
+      local def = dictionary.fetch_definition(word)
 
       if not def then
         print("No definition found")
@@ -31,6 +34,7 @@ function main()
 
       if utils.file_info(viewer_path) then
         html.generate_html(def)
+        mp.osd_message("Opening: " .. def.word, 1)
         utils.subprocess({
           args = { viewer_path }
         })
