@@ -8,11 +8,11 @@ function generate_html(def)
   <meta charset="UTF-8">
   <style>
     body { font-family: "Helvetica Neue", Arial, sans-serif; padding: 20px; background: #fff; }
-    .word { font-size: 28px; font-weight: bold; margin-bottom: 4px; }
-    .reading { font-size: 18px; color: #666; margin-bottom: 8px; }
-    .pos { font-size: 14px; color: #2a6; font-style: italic; margin-bottom: 12px; }
-    .definitions { list-style: decimal; padding-left: 20px; }
-    .definitions li { margin-bottom: 6px; }
+    .word { font-size: 42px; font-weight: bold; margin-bottom: 4px; }
+    .reading { font-size: 28px; color: #666; margin-bottom: 8px; }
+    .pos { font-size: 22px; color: #2a6; font-style: italic; margin-bottom: 12px; }
+    .definitions { list-style: decimal; padding-left: 20px; font-size: 24px; }
+    .definitions li { margin-bottom: 10px; }
   </style>
 </head>
 <body>
