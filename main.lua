@@ -7,7 +7,7 @@ function main()
   local sub_text = mp.get_property("sub-text")
 
   local result = utils.subprocess({
-    args = {"sh", "-c", "echo '" .. sub_text .. "' | sudachi -w -m c"},
+    args = { "sh", "-c", "echo '" .. sub_text .. "' | sudachi -w -m c" },
     capture_stdout = true
   })
 
@@ -20,14 +20,26 @@ function main()
     items = words,
     submit = function(index)
       local def = dictionary.fetch_definition(words[index])
+
       if not def then
         print("No definition found")
         return
       end
-      html.generate_html(def)
+
+      local script_dir = mp.get_script_directory()
+      local viewer_path = script_dir .. "/viewer"
+
+      if utils.file_info(viewer_path) then
+        html.generate_html(def)
+        utils.subprocess({
+          args = { viewer_path }
+        })
+      else
+        print("Viewer binary NOT found at: " .. viewer_path)
+      end
+
     end
   })
-
 end
 
 mp.add_key_binding("a", "select-subtitle-word", main)
