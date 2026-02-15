@@ -20,7 +20,7 @@ function main()
     items = words,
     submit = function(index)
       local word = words[index]
-      mp.osd_message("Looking up: " .. word, 2)
+      mp.osd_message("Looking up: " .. word, 5)
 
       local def = dictionary.fetch_definition(word)
 
@@ -34,7 +34,6 @@ function main()
 
       if utils.file_info(viewer_path) then
         html.generate_html(def)
-        mp.osd_message("Opening: " .. def.word, 1)
         utils.subprocess({
           args = { viewer_path }
         })
