@@ -20,8 +20,8 @@ function main()
     items = words,
     submit = function(index)
       local word = words[index]
-      mp.osd_message("Looking up: " .. word, 5)
 
+      mp.osd_message("Looking up: " .. word, 5)
       local def = dictionary.fetch_definition(word)
 
       if not def then
@@ -29,18 +29,7 @@ function main()
         return
       end
 
-      local script_dir = mp.get_script_directory()
-      local viewer_path = script_dir .. "/viewer"
-
-      if utils.file_info(viewer_path) then
-        html.generate_html(def)
-        utils.subprocess({
-          args = { viewer_path }
-        })
-      else
-        print("Viewer binary NOT found at: " .. viewer_path)
-      end
-
+      dictionary.showDefinition(def)
     end
   })
 end
