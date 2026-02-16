@@ -4,8 +4,12 @@
 int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
+    g_set_prgname("definition-viewer");
+    g_set_application_name("Definition Viewer");
+
     GtkWindow *window = GTK_WINDOW(gtk_window_new(GTK_WINDOW_TOPLEVEL));
-    gtk_window_set_title(window, "Definition");
+    gtk_window_set_title(window, "Definition Viewer");
+    gtk_window_set_role(window, "definition-viewer");
     gtk_window_set_default_size(window, 600, 400);
     gtk_window_resize(window, 500, 300);
 
