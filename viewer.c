@@ -1,6 +1,14 @@
 #include <gtk/gtk.h>
 #include <webkit2/webkit2.h>
 
+static gboolean on_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data) {
+    if (event->keyval == GDK_KEY_q || event->keyval == GDK_KEY_Q || event->keyval == GDK_KEY_Escape) {
+        gtk_main_quit();
+        return TRUE;
+    }
+    return FALSE;
+}
+
 int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
@@ -21,6 +29,7 @@ int main(int argc, char *argv[]) {
     g_free(uri);
 
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
 
     gtk_widget_show_all(GTK_WIDGET(window));
     gtk_main();
