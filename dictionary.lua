@@ -32,6 +32,14 @@ function showDefinitionPrint(def)
   end
 end
 
+function showDefinitionOsd(def)
+  local msg = def.word .. " [" .. def.reading .. "]\n" .. def.part_of_speech .. "\n"
+  for i, meaning in ipairs(def.definitions) do
+    msg = msg .. i .. ". " .. meaning .. "\n"
+  end
+  mp.osd_message(msg, 10)
+end
+
 function showDefinitionWebView(def)
   local html = require 'html'
   local script_dir = mp.get_script_directory()
@@ -49,5 +57,6 @@ end
 
 return {
   fetch_definition = fetch_definition,
-  showDefinition = showDefinition
+  showDefinition = showDefinition,
+  showDefinitionOsd = showDefinitionOsd
 }
