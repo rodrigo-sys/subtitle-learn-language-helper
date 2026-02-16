@@ -2,7 +2,7 @@ local utils = require 'mp.utils'
 
 function fetch_definition(word)
   local result = utils.subprocess({
-    args = {"sh", "-c", "curl -s -G --data-urlencode 'keyword=" .. word .. "' 'https://jisho.org/api/v1/search/words'"},
+    args = { "sh", "-c", "curl -s -G --data-urlencode 'keyword=" .. word .. "' 'https://jisho.org/api/v1/search/words'" },
     capture_stdout = true
   })
 
@@ -20,7 +20,11 @@ function fetch_definition(word)
   }
 end
 
-function print_definition(def)
+function showDefinition(def)
+  showDefinitionWebView(def)
+end
+
+function showDefinitionPrint(def)
   print(def.word .. " [" .. def.reading .. "]")
   print(def.part_of_speech)
   for i, def in ipairs(def.definitions) do
@@ -28,7 +32,7 @@ function print_definition(def)
   end
 end
 
-function showDefinition(def)
+function showDefinitionWebView(def)
   local html = require 'html'
   local script_dir = mp.get_script_directory()
   local viewer_path = script_dir .. "/viewer"
@@ -45,6 +49,5 @@ end
 
 return {
   fetch_definition = fetch_definition,
-  print_definition = print_definition,
   showDefinition = showDefinition
 }
