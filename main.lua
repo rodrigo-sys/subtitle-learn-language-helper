@@ -25,7 +25,7 @@ function main()
       local def = dictionary.fetch_definition(word)
 
       if not def then
-        print("No definition found")
+        mp.osd_message("No definition found")
         return
       end
 
